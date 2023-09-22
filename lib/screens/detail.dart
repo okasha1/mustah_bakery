@@ -29,7 +29,7 @@ class _ProductDetailState extends State<ProductDetail> {
           )),
       body: Stack(children: [
         Container(
-          height: size.height * 0.55,
+          height: size.height * 0.45,
           width: double.infinity,
           decoration: const BoxDecoration(
               image: DecorationImage(
@@ -37,10 +37,12 @@ class _ProductDetailState extends State<ProductDetail> {
                   fit: BoxFit.fill)),
         ),
         Container(
-          height: size.height * 0.5,
+          margin: EdgeInsets.only(top: size.height * 0.42),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          height: size.height * 0.6,
           width: double.infinity,
-          alignment: Alignment.bottomCenter,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20), color: Colors.grey[100]),
           child: const Column(children: [
             BlackText(text: 'Description'),
             Row(

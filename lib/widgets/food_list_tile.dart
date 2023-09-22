@@ -42,7 +42,17 @@ class RecommendedFoodTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BlackText(text: name),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BlackText(text: name),
+                        Container(
+                            height: 10,
+                            width: 20,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: Colors.deepOrangeAccent))
+                      ]),
                   SmallText(
                     text: description,
                   ),
