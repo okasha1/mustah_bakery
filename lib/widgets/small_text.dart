@@ -16,7 +16,7 @@ class SmallText extends StatelessWidget {
         fontWeight: FontWeight.w300,
         overflow: TextOverflow.ellipsis,
       ),
-      overflow: TextOverflow.ellipsis,
+      // overflow: TextOverflow.ellipsis,
     );
   }
 }

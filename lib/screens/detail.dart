@@ -90,19 +90,60 @@ class _ProductDetailState extends State<ProductDetail> {
                   )
                 ],
               ),
-              const SmallText(
-                text: 'This is a small description of the product. '
-                    'This food comes in vareity of different flavors so you can from many menus.',
+              Container(
+                margin: const EdgeInsets.only(bottom: 20),
+                height: 70,
+                width: double.maxFinite,
+                child: const Text(
+                    'This is a small description of the product that you will begetting. This food comes in vareity of different flavors so you can from many menus.',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        fontSize: 18,
+                        overflow: TextOverflow.ellipsis,
+                        color: Color.fromARGB(255, 43, 40, 40))),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  //THE BASIC AND SUPREME BUTTONS
                   Container(
-                      height: size.height * 0.04,
-                      width: size.width * 0.1,
-                      color: AppColors.mainColor,
-                      child: const Text('Basic')),
+                      height: 40,
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.mainColor,
+                      ),
+                      child: const Center(child: Text('Basic'))),
+                  const SizedBox(width: 10),
+                  Container(
+                      height: 40,
+                      width: 80,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.mainColor,
+                      ),
+                      child: const Center(child: Text('Supreme'))),
                 ],
-              )
+              ),
+              Row(children: [
+                Container(
+                    height: 30,
+                    width: 45,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.blue),
+                    child: const Center(
+                        child: Text('+', style: TextStyle(fontSize: 30)))),
+                const Text('10', style: TextStyle(fontSize: 18)),
+                Container(
+                    height: 30,
+                    width: 45,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.blue),
+                    child: const Center(
+                        child: Text('-', style: TextStyle(fontSize: 30)))),
+              ])
             ]),
           ),
         )
