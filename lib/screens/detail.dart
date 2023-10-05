@@ -22,7 +22,7 @@ class _ProductDetailState extends State<ProductDetail> {
     return num;
   }
 
-  bool tapped = false;
+  bool _tapped = false;
   int miniPrice = 50;
   int basicPrice = 80;
   int supremmePrice = 130;
@@ -141,7 +141,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        tapped = true;
+                        _tapped = true;
                         priceHolder = miniPrice;
                       });
                     },
@@ -151,7 +151,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color:
-                              tapped ? AppColors.mainColor : Colors.grey[900],
+                              _tapped ? AppColors.mainColor : Colors.grey[900],
                         ),
                         child: const Center(child: Text('Mini'))),
                   ),
@@ -159,7 +159,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        tapped = true;
+                        _tapped = true;
                         priceHolder = basicPrice;
                       });
                     },
@@ -169,7 +169,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color:
-                              tapped ? AppColors.mainColor : Colors.grey[900],
+                              _tapped ? AppColors.mainColor : Colors.grey[900],
                         ),
                         child: const Center(
                             child:
@@ -179,7 +179,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        tapped = true;
+                        _tapped = true;
                         priceHolder = supremmePrice;
                       });
                     },
@@ -189,7 +189,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color:
-                              tapped ? AppColors.mainColor : Colors.grey[900],
+                              _tapped ? AppColors.mainColor : Colors.grey[900],
                         ),
                         child: const Center(child: Text('Supreme'))),
                   ),
