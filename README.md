@@ -4,7 +4,5 @@ A new Flutter project.
 
 ## Getting Started
 
-This is a personal project. I'm creating an online bakery store. 
-It will have a Login and SignUp page, Home page, a Products page, a Cart and Profile page
-
-The a
+This is a personal project. I'm creating an online bakery store. I will be using Firebase/ Firebase for its backend
+Feel free to follow along.
