@@ -1,5 +1,8 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mustah_bakery/models/product_model.dart';
+import 'package:mustah_bakery/screens/detail.dart';
 import 'package:mustah_bakery/widgets/black_text.dart';
 import 'package:mustah_bakery/widgets/food_list_tile.dart';
 
@@ -43,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
     'Vanilla Cup Cake',
     'Baked Chips'
   ];
+
   final String name = 'Okasha';
   @override
   Widget build(BuildContext context) {
@@ -98,18 +102,21 @@ class _HomeScreenState extends State<HomeScreen> {
                         loop: false,
                         itemBuilder: (BuildContext context, int index) {
                           return Stack(children: [
-                            Container(
-                              height: 200,
-                              width: 300,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: DecorationImage(
-                                      image: AssetImage(
-                                          'assets/images/popular/${popular[index]}'),
-                                      fit: BoxFit.fill),
-                                  color: index.isEven
-                                      ? Colors.amber
-                                      : Colors.blue),
+                            GestureDetector(
+                              onTap: () => Get.to(() => const ProductDetail()),
+                              child: Container(
+                                height: 200,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/popular/${popular[index]}'),
+                                        fit: BoxFit.fill),
+                                    color: index.isEven
+                                        ? Colors.amber
+                                        : Colors.blue),
+                              ),
                             ),
                             Align(
                               alignment: Alignment.bottomCenter,
@@ -215,12 +222,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             shrinkWrap: true,
                             itemCount: recommended.length,
                             itemBuilder: (context, index) {
-                              return RecommendedFoodTile(
-                                  imageItem:
-                                      'assets/images/recommended/${recommended[index]}',
-                                  name: recommendedName[index],
-                                  description:
-                                      'The best pizza food in town that everyone and it is very affordable for everyone');
+                              return GestureDetector(
+                                //Button to the product detail
+                                onTap: () =>
+                                    Get.to(() => const ProductDetail()),
+                                child: RecommendedFoodTile(
+                                    imageItem:
+                                        'assets/images/recommended/${recommended[index]}',
+                                    name: recommendedName[index],
+                                    description:
+                                        'The best pizza food in town that everyone and it is very affordable for everyone'),
+                              );
                             }),
                       ),
                     ),

@@ -8,11 +8,19 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _numberController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Profile'),
+        ),
+        //bottomSheet: BottomSheet(onClosing: onClosing, builder: builder),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.edit),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -49,7 +57,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           size: 35, color: Colors.white),
                     ),
                     const SizedBox(width: 15),
-                    const Text('Okasha Shaibu', style: TextStyle(fontSize: 20)),
+                    const Text('Okasha Shaibu ',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 20)),
                   ]),
                 )),
             const SizedBox(height: 20),

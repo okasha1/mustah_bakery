@@ -25,7 +25,7 @@ class _ProductDetailState extends State<ProductDetail> {
   bool _tapped = false;
   int miniPrice = 50;
   int basicPrice = 80;
-  int supremmePrice = 130;
+  int supremePrice = 130;
   int priceHolder = 50;
 
   @override
@@ -67,6 +67,19 @@ class _ProductDetailState extends State<ProductDetail> {
               image: DecorationImage(
                   image: AssetImage('assets/images/pizza.jpg'),
                   fit: BoxFit.fill)),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 40, left: 10),
+          child: CircleAvatar(
+            radius: 20,
+            backgroundColor: const Color.fromARGB(255, 255, 174, 149),
+            child: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                color: Colors.black,
+                icon: const Icon(Icons.arrow_back_ios_new)),
+          ),
         ),
         Container(
           margin: EdgeInsets.only(top: size.height * 0.42),
@@ -141,7 +154,11 @@ class _ProductDetailState extends State<ProductDetail> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _tapped = true;
+                        if (!_tapped) {
+                          _tapped = true;
+                        } else {
+                          _tapped = false;
+                        }
                         priceHolder = miniPrice;
                       });
                     },
@@ -159,7 +176,11 @@ class _ProductDetailState extends State<ProductDetail> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _tapped = true;
+                        if (!_tapped) {
+                          _tapped = true;
+                        } else {
+                          _tapped = false;
+                        }
                         priceHolder = basicPrice;
                       });
                     },
@@ -179,8 +200,12 @@ class _ProductDetailState extends State<ProductDetail> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        _tapped = true;
-                        priceHolder = supremmePrice;
+                        if (_tapped) {
+                          _tapped = true;
+                        } else {
+                          _tapped = false;
+                        }
+                        priceHolder = supremePrice;
                       });
                     },
                     child: Container(

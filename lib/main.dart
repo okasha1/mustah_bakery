@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mustah_bakery/data/helper/dependencies.dart' as dep;
-import 'package:mustah_bakery/models/product_model.dart';
 import 'package:mustah_bakery/screens/detail.dart';
 import 'package:mustah_bakery/screens/homepage.dart';
 import 'package:mustah_bakery/screens/login.dart';
 import 'package:mustah_bakery/screens/profile.dart';
 import 'package:mustah_bakery/screens/signup.dart';
+import 'package:mustah_bakery/screens/wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,13 +16,14 @@ void main() async {
     theme: ThemeData(primarySwatch: Colors.red),
     home: Scaffold(
       backgroundColor: Colors.red[400],
-      body: const ProfilePage(),
+      body: const Wrapper(),
     ),
     routes: {
       '/login': (context) => const LoginScreen(),
       '/signUp': (context) => const SignUpScreen(),
       '/homePage': (context) => const HomeScreen(),
-      'productDetail': (context) => const ProductDetail()
+      'productDetail': (context) => const ProductDetail(),
+      '/profile': (context) => const ProfilePage()
     },
   ));
 }
