@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mustah_bakery/data/controller/controller.dart';
 import 'package:mustah_bakery/widgets/cart_tile.dart';
 
 class CartPage extends StatefulWidget {
@@ -12,11 +14,14 @@ class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cart'),
-        backgroundColor: Colors.deepOrange[400],
-      ),
-      body: const CartTile(),
-    );
+        appBar: AppBar(
+          title: const Text('Cart'),
+          backgroundColor: Colors.deepOrange[400],
+        ),
+        body: GetBuilder<ItemsController>(builder: (itemsCart) {
+          return  ListView.builder(itemBuilder: ((context, index) {
+            return CartTile(image: itemsCart.productsList[index][image], name: name, quantity: quantity)
+          }));
+        }));
   }
 }

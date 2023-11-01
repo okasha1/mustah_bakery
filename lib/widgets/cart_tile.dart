@@ -3,7 +3,15 @@ import 'package:get/get.dart';
 import 'package:mustah_bakery/widgets/black_text.dart';
 
 class CartTile extends StatefulWidget {
-  const CartTile({super.key});
+  final String name;
+  final String image;
+  final int quantity;
+  const CartTile({
+    super.key,
+    required this.image,
+    required this.name,
+    required this.quantity,
+  });
 
   @override
   State<CartTile> createState() => _CartTileState();

@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:mustah_bakery/data/repository/recommended_items_repo.dart';
+import 'package:mustah_bakery/models/cart_model.dart';
 
-class RecommendedItemsController extends GetxController {
-  final RecommendedItems recommendedItems;
-  RecommendedItemsController({required this.recommendedItems});
-  List<dynamic> _productslist = [];
-  List<dynamic> get productsList => _productslist;
+class ItemsController extends GetxController {
+  final List<CartModel> _productslist = [];
+  List<CartModel> get productsList => _productslist;
+  final int _quantity = 0;
+  int get quantity => _quantity;
 }

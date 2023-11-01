@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mustah_bakery/data/controller/controller.dart';
+import 'package:mustah_bakery/models/cart_model.dart';
 import 'package:mustah_bakery/utilities/colors.dart';
 import 'package:mustah_bakery/widgets/black_text.dart';
 
@@ -11,6 +13,7 @@ class ProductDetail extends StatefulWidget {
 }
 
 class _ProductDetailState extends State<ProductDetail> {
+  ItemsController controller = Get.put(ItemsController());
   int itemCount = 1;
   int itemChecker(int num) {
     if (num > 100) {
@@ -45,7 +48,12 @@ class _ProductDetailState extends State<ProductDetail> {
                   style: const TextStyle(fontSize: 30)),
               //The bottom Navigation button
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  controller.productsList.add(CartModel(
+                      image: 'assets/images/pizza.jpg',
+                      name: 'pizza',
+                      quantity: 1));
+                },
                 child: Container(
                   height: 90,
                   width: 200,
