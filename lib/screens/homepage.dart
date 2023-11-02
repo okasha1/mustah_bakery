@@ -1,7 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mustah_bakery/models/product_model.dart';
 import 'package:mustah_bakery/screens/detail.dart';
 import 'package:mustah_bakery/widgets/black_text.dart';
 import 'package:mustah_bakery/widgets/food_list_tile.dart';
