@@ -18,11 +18,12 @@ class _CartPageState extends State<CartPage> {
           title: const Text('Cart'),
           backgroundColor: Colors.deepOrange[400],
         ),
-        body: GetBuilder<ItemsController>(builder: (itemsCart) {
-          return ListView.builder(itemBuilder: ((context, index) {
+        body: ListView.builder(
+          itemBuilder: ((context, index) {
             return const CartTile(
                 image: 'assets/images/pic1', name: 'Food', quantity: 4);
-          }));
-        }));
+          }),
+          itemCount: 4,
+        ));
   }
 }

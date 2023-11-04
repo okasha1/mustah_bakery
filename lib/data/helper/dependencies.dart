@@ -10,5 +10,5 @@ Future<void> init() async {
   //This one for the repository
   Get.lazyPut(() => RecommendedItems(apiClient: Get.find()));
   //This one for the controller
-  Get.lazyPut(() => RecommendedItemsController(recommendedItems: Get.find()));
+  //Get.lazyPut(() => RecommendedItemsController(recommendedItems: Get.find()));
 }

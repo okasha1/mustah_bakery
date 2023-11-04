@@ -1,13 +1,8 @@
 class Product {
-  String? name;
-  String? image;
-  String? description;
-  int? price;
-  Product({this.name, this.image, this.description, this.price});
-  Product.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    image = json['image'];
-    description = json['description'];
-    price = json['price'];
-  }
+  final String? name;
+  final String? image;
+  final String? description;
+  final int? price1;
+  final int? price2;
+  Product({this.name, this.image, this.description, this.price1, this.price2});
 }

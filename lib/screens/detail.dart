@@ -6,7 +6,18 @@ import 'package:mustah_bakery/utilities/colors.dart';
 import 'package:mustah_bakery/widgets/black_text.dart';
 
 class ProductDetail extends StatefulWidget {
-  const ProductDetail({super.key});
+  final String? imageUrl;
+  final String? name;
+  final String? description;
+  final int? price1;
+  final int? price2;
+  const ProductDetail(
+      {super.key,
+      this.imageUrl,
+      this.name,
+      this.description,
+      this.price1,
+      this.price2});
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
@@ -15,6 +26,16 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail> {
   ItemsController controller = Get.put(ItemsController());
   int itemCount = 1;
+
+  static int get price1 => _ProductDetailState.price1;
+
+  static int get price2 => _ProductDetailState.price2;
+
+  static get imageUrl => _ProductDetailState.imageUrl;
+
+  static get name => _ProductDetailState.name;
+
+  static get description => _ProductDetailState.description;
   int itemChecker(int num) {
     if (num > 100) {
       return 100;
@@ -26,9 +47,9 @@ class _ProductDetailState extends State<ProductDetail> {
   }
 
   bool _tapped = false;
-  int miniPrice = 50;
-  int basicPrice = 80;
-  int supremePrice = 130;
+
+  int basicPrice = price1;
+  int supremePrice = price2;
   int priceHolder = 50;
 
   @override
@@ -50,9 +71,9 @@ class _ProductDetailState extends State<ProductDetail> {
               InkWell(
                 onTap: () {
                   controller.productsList.add(CartModel(
-                      image: 'assets/images/pizza.jpg',
-                      name: 'pizza',
-                      quantity: 1));
+                      image: 'assets/images/$imageUrl',
+                      name: '$name',
+                      quantity: itemChecker(itemCount)));
                 },
                 child: Container(
                   height: 90,
@@ -71,9 +92,9 @@ class _ProductDetailState extends State<ProductDetail> {
         Container(
           height: size.height * 0.45,
           width: double.infinity,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/images/pizza.jpg'),
+                  image: AssetImage('assets/images/$imageUrl'),
                   fit: BoxFit.fill)),
         ),
         Padding(
@@ -99,7 +120,7 @@ class _ProductDetailState extends State<ProductDetail> {
           child: Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Column(children: [
-              const BlackText(text: 'Description'),
+              BlackText(text: '$name'),
               const SizedBox(height: 10),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,9 +168,8 @@ class _ProductDetailState extends State<ProductDetail> {
                 margin: const EdgeInsets.only(bottom: 20),
                 height: 100,
                 width: double.maxFinite,
-                child: const Text(
-                    'This is a small description of the product that you will begetting. This food comes in vareity of different flavors so you can from many menus.',
-                    style: TextStyle(
+                child: Text('$description',
+                    style: const TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 18,
                         color: Color.fromARGB(255, 43, 40, 40))),
@@ -159,27 +179,6 @@ class _ProductDetailState extends State<ProductDetail> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //THE BASIC AND SUPREME BUTTONS
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (!_tapped) {
-                          _tapped = true;
-                        } else {
-                          _tapped = false;
-                        }
-                        priceHolder = miniPrice;
-                      });
-                    },
-                    child: Container(
-                        height: 40,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color:
-                              _tapped ? AppColors.mainColor : Colors.grey[900],
-                        ),
-                        child: const Center(child: Text('Mini'))),
-                  ),
                   const SizedBox(width: 10),
                   GestureDetector(
                     onTap: () {
