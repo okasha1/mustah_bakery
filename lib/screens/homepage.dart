@@ -2,7 +2,8 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mustah_bakery/models/product_model.dart';
-import 'package:mustah_bakery/screens/detail.dart';
+import 'package:mustah_bakery/screens/popular_detail.dart';
+import 'package:mustah_bakery/screens/recommended_detail.dart';
 import 'package:mustah_bakery/widgets/black_text.dart';
 import 'package:mustah_bakery/widgets/food_list_tile.dart';
 
@@ -14,75 +15,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Product> popularProducts = [
-    Product(
-      name: 'Cake',
-      image: 'pinkCake.jpg',
-      description:
-          "Celebrate the birthday of your favorite app with a custom-made cake! We can create a cake in any shape, size, and flavor you choose, and decorate it with the app's logo, colors, and characters.",
-      price1: 180,
-      price2: 300,
-    ),
-    Product(
-        name: 'Pizza',
-        image: 'slice.jpg',
-        description:
-            "A delicious and versatile food that can be enjoyed by people of all ages,made with fresh, high-quality ingredients and cooked to perfection. \n Order your pizza today!",
-        price1: 80,
-        price2: 120),
-    Product(
-        name: 'Jollof Rice',
-        image: 'jollof.jpg',
-        description:
-            "A delicious and savory West African rice dish made with long-grain rice, tomatoes, peppers, onions, spices, and sometimes other vegetables and/or meat. Jollof rice is a popular dish in many West African countries and is often served for parties and gatherings. Order your jollof rice today and enjoy.",
-        price1: 40,
-        price2: 70),
-    Product(
-        name: "Cup Cake",
-        image: 'cupcake.jpg',
-        description:
-            "Delicious and moist cakes baked in small, individual molds and decorated with frosting, icing, sprinkles, and other toppings. Cupcakes are a perfect treat for any occasion!",
-        price1: 10,
-        price2: 13),
-    Product(
-        name: 'Spring Rolls',
-        image: 'springroll.jpg',
-        description:
-            "Crispy and delicious spring rolls made with a thin pastry sheet wrapped around a savory filling and deep-fried or baked. Spring rolls are a perfect appetizer or snack for any occasion!Order your spring rolls today and enjoy.",
-        price1: 15,
-        price2: 35),
-  ];
-  List<Product> recommendedProducts = [
-    Product(
-        name: 'Salad',
-        image: 'salad.jpg',
-        description:
-            "A delicious and healthy dish made with mixed raw or cooked vegetables, fruits, nuts, seeds, grains, meat, poultry, or seafood. Salads are a perfect meal option for any occasion. Order your salad today and enjoy a taste of freshness!",
-        price1: 40,
-        price2: 75),
-    Product(
-        name: 'Fried Chips',
-        image: 'friedchips.jpg',
-        description:
-            "Crispy and delicious fried chips made with thinly sliced potatoes and fried in hot oil until golden brown. Fried chips are a perfect snack or side dish for any occasion! Order your fried chips today and enjoy a classic treat!",
-        price1: 20,
-        price2: 35),
-    Product(
-        name: 'Pie',
-        image: 'pie.jpg',
-        description:
-            "A delicious and flaky pastry crust filled with a variety of sweet or savory ingredients, baked to perfection. Pies are a classic dessert that can be enjoyed by people of all ages. Order your pie today and indulge in a sweet or savory treat!",
-        price1: 20,
-        price2: 30),
-    Product(
-        name: 'Vanilla Cup Cake',
-        image: 'cupcake.jpg',
-        description:
-            "A moist and fluffy vanilla cake topped with sweet and creamy vanilla frosting. A classic dessert that is perfect for any occasion.",
-        price1: 15,
-        price2: 25)
-  ];
   final String name = 'Okasha';
+  List<Product> popular = Product.popularProducts;
+  List<Product> recommended = Product.recommendedProducts;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,12 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           return Stack(children: [
                             GestureDetector(
                               onTap: () => Get.to(() => ProductDetail(
-                                    name: '${popularProducts[index].name}',
-                                    imageUrl: '${popularProducts[index].image}',
-                                    description:
-                                        '${popularProducts[index].description}',
-                                    price1: popularProducts[index].price1,
-                                    price2: popularProducts[index].price2,
+                                    individualProduct: popular[index],
                                   )),
                               child: Container(
                                 height: 200,
@@ -153,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderRadius: BorderRadius.circular(20),
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/popular/${popularProducts[index].image}'),
+                                            'assets/images/popular/${popular[index].image}'),
                                         fit: BoxFit.fill),
                                     color: index.isEven
                                         ? Colors.amber
@@ -179,8 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         BlackText(
-                                          text:
-                                              '${popularProducts[index].name}',
+                                          text: '${popular[index].name}',
                                         ),
                                         Wrap(
                                             children: List.generate(
@@ -238,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           ]);
                         },
-                        itemCount: popularProducts.length,
+                        itemCount: popular.length,
                         viewportFraction: 0.8,
                         scale: 0.9,
                         pagination: const SwiperPagination(
@@ -263,18 +192,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: recommendedProducts.length,
+                            itemCount: Product.recommendedProducts.length,
                             itemBuilder: (context, index) {
                               return GestureDetector(
                                 //Button to the product detail
                                 onTap: () =>
-                                    Get.to(() => const ProductDetail()),
+                                    Get.to(() => RecommendedProductDetail(
+                                          individualProduct: recommended[index],
+                                        )),
                                 child: RecommendedFoodTile(
                                     imageItem:
-                                        'assets/images/recommended/${recommendedProducts[index].image}',
-                                    name: '${recommendedProducts[index].name}',
+                                        'assets/images/recommended/${recommended[index].image}',
+                                    name: '${recommended[index].name}',
                                     description:
-                                        '${recommendedProducts[index].description}'),
+                                        '${recommended[index].description}'),
                               );
                             }),
                       ),

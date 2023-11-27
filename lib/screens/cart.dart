@@ -16,14 +16,20 @@ class _CartPageState extends State<CartPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Cart'),
-          backgroundColor: Colors.deepOrange[400],
+          backgroundColor: const Color.fromARGB(255, 255, 110, 108),
         ),
-        body: ListView.builder(
-          itemBuilder: ((context, index) {
-            return const CartTile(
-                image: 'assets/images/pic1', name: 'Food', quantity: 4);
-          }),
-          itemCount: 4,
+        body: GetBuilder<ItemsController>(
+          builder: (controller) {
+            return ListView.builder(
+              itemBuilder: ((context, index) {
+                return CartTile(
+                    image: controller.productsList[index],
+                    name: controller.productsList[index],
+                    quantity: controller.productsList[index]);
+              }),
+              itemCount: controller.productsList.length,
+            );
+          },
         ));
   }
 }

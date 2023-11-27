@@ -19,6 +19,7 @@ class CartTile extends StatefulWidget {
 
 class _CartTileState extends State<CartTile> {
   int itemCount = 1;
+
   int itemChecker(int num) {
     if (num > 100) {
       Get.snackbar('Exceeding Limit', "You can't order more than 100",
@@ -46,15 +47,14 @@ class _CartTileState extends State<CartTile> {
         children: [
           Container(
             width: 100,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/pizza.jpg'))),
+                    fit: BoxFit.cover, image: AssetImage(widget.image))),
           ),
           const SizedBox(
             width: 10,
           ),
-          const BlackText(text: 'Pizza Rice'),
+          BlackText(text: widget.name),
           Padding(
             padding: const EdgeInsets.only(left: 90),
             child: Column(

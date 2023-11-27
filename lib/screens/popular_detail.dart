@@ -1,41 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mustah_bakery/data/controller/controller.dart';
-import 'package:mustah_bakery/models/cart_model.dart';
+
+import 'package:mustah_bakery/models/product_model.dart';
 import 'package:mustah_bakery/utilities/colors.dart';
 import 'package:mustah_bakery/widgets/black_text.dart';
 
 class ProductDetail extends StatefulWidget {
-  final String? imageUrl;
-  final String? name;
-  final String? description;
-  final int? price1;
-  final int? price2;
-  const ProductDetail(
-      {super.key,
-      this.imageUrl,
-      this.name,
-      this.description,
-      this.price1,
-      this.price2});
+  final Product individualProduct;
+  const ProductDetail({
+    super.key,
+    required this.individualProduct,
+  });
 
   @override
   State<ProductDetail> createState() => _ProductDetailState();
 }
 
 class _ProductDetailState extends State<ProductDetail> {
-  ItemsController controller = Get.put(ItemsController());
   int itemCount = 1;
 
-  static int get price1 => _ProductDetailState.price1;
-
-  static int get price2 => _ProductDetailState.price2;
-
-  static get imageUrl => _ProductDetailState.imageUrl;
-
-  static get name => _ProductDetailState.name;
-
-  static get description => _ProductDetailState.description;
   int itemChecker(int num) {
     if (num > 100) {
       return 100;
@@ -48,12 +32,15 @@ class _ProductDetailState extends State<ProductDetail> {
 
   bool _tapped = false;
 
-  int basicPrice = price1;
-  int supremePrice = price2;
+  int? basicPrice;
+
+  int? supremePrice;
+
   int priceHolder = 50;
 
   @override
   Widget build(BuildContext context) {
+    ItemsController controller = Get.put(ItemsController());
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.pink[50],
@@ -68,24 +55,29 @@ class _ProductDetailState extends State<ProductDetail> {
               Text('₵${priceHolder * itemChecker(itemCount)}',
                   style: const TextStyle(fontSize: 30)),
               //The bottom Navigation button
-              InkWell(
-                onTap: () {
-                  controller.productsList.add(CartModel(
-                      image: 'assets/images/$imageUrl',
-                      name: '$name',
-                      quantity: itemChecker(itemCount)));
-                },
-                child: Container(
-                  height: 90,
-                  width: 200,
-                  decoration: BoxDecoration(
-                      color: Colors.deepOrangeAccent,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: const Center(
-                      child:
-                          Text('ADD TO CART', style: TextStyle(fontSize: 30))),
-                ),
-              )
+              GetBuilder<ItemsController>(builder: (controller) {
+                return InkWell(
+                  onTap: () {
+                    controller.productsList.add(Product(
+                        image: widget.individualProduct.image,
+                        name: widget.individualProduct.name,
+                        quantity: itemChecker(itemCount),
+                        description: '',
+                        price1: null,
+                        price2: null));
+                  },
+                  child: Container(
+                    height: 90,
+                    width: 200,
+                    decoration: BoxDecoration(
+                        color: Colors.deepOrangeAccent,
+                        borderRadius: BorderRadius.circular(15)),
+                    child: const Center(
+                        child: Text('ADD TO CART',
+                            style: TextStyle(fontSize: 30))),
+                  ),
+                );
+              })
             ],
           )),
       body: Stack(children: [
@@ -94,7 +86,8 @@ class _ProductDetailState extends State<ProductDetail> {
           width: double.infinity,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/images/$imageUrl'),
+                  image: AssetImage(
+                      'assets/images/popular/${widget.individualProduct.image}'),
                   fit: BoxFit.fill)),
         ),
         Padding(
@@ -120,7 +113,7 @@ class _ProductDetailState extends State<ProductDetail> {
           child: Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Column(children: [
-              BlackText(text: '$name'),
+              BlackText(text: widget.individualProduct.name.toString()),
               const SizedBox(height: 10),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -166,9 +159,9 @@ class _ProductDetailState extends State<ProductDetail> {
               const SizedBox(height: 10),
               Container(
                 margin: const EdgeInsets.only(bottom: 20),
-                height: 100,
+                height: 120,
                 width: double.maxFinite,
-                child: Text('$description',
+                child: Text(widget.individualProduct.description.toString(),
                     style: const TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 18,
@@ -188,7 +181,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         } else {
                           _tapped = false;
                         }
-                        priceHolder = basicPrice;
+                        priceHolder = basicPrice!;
                       });
                     },
                     child: Container(
@@ -212,7 +205,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         } else {
                           _tapped = false;
                         }
-                        priceHolder = supremePrice;
+                        priceHolder = supremePrice!;
                       });
                     },
                     child: Container(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mustah_bakery/data/helper/dependencies.dart' as dep;
-import 'package:mustah_bakery/screens/detail.dart';
+import 'package:mustah_bakery/screens/popular_detail.dart';
 import 'package:mustah_bakery/screens/homepage.dart';
 import 'package:mustah_bakery/screens/login.dart';
 import 'package:mustah_bakery/screens/profile.dart';
@@ -22,7 +22,6 @@ void main() async {
       '/login': (context) => const LoginScreen(),
       '/signUp': (context) => const SignUpScreen(),
       '/homePage': (context) => const HomeScreen(),
-      'productDetail': (context) => const ProductDetail(),
       '/profile': (context) => const ProfilePage()
     },
   ));
