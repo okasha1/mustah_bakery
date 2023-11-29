@@ -103,7 +103,15 @@ class _ProfilePageState extends State<ProfilePage> {
                     const SizedBox(width: 15),
                     const Text('Aboaso', style: TextStyle(fontSize: 20)),
                   ]),
-                ))
+                )),
+            const SizedBox(
+              height: 60,
+            ),
+            const Text(
+              'Mustah Bakery',
+              style: TextStyle(fontFamily: 'Niccone', fontSize: 20),
+            ),
+            const Center(child: Text('Version  1.0.0'))
           ]),
         ));
   }

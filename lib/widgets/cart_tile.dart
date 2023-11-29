@@ -36,7 +36,7 @@ class _CartTileState extends State<CartTile> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 10),
-      height: MediaQuery.of(context).size.height * 0.10,
+      height: MediaQuery.of(context).size.height * 0.15,
       width: double.maxFinite,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -44,6 +44,7 @@ class _CartTileState extends State<CartTile> {
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             width: 100,
@@ -55,47 +56,25 @@ class _CartTileState extends State<CartTile> {
             width: 10,
           ),
           BlackText(text: widget.name),
-          Padding(
-            padding: const EdgeInsets.only(left: 90),
-            child: Column(
-              children: [
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      itemCount--;
-                    });
-                  },
-                  child: Container(
-                      width: 40,
-                      height: 20,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.deepOrange),
-                      child: const Center(
-                          child: Text('—', style: TextStyle(fontSize: 20)))),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Text('${itemChecker(itemCount)}',
-                      style: const TextStyle(fontSize: 18)),
-                ),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      itemCount++;
-                    });
-                  },
-                  child: Container(
-                      width: 40,
-                      height: 20,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.deepOrange),
-                      child: const Center(
-                          child: Text('+', style: TextStyle(fontSize: 20)))),
-                ),
-              ],
-            ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                onPressed: () {},
+                splashRadius: 5,
+                iconSize: 24,
+                splashColor: const Color.fromARGB(255, 252, 145, 126),
+                icon: const Icon(Icons.add_circle_outline),
+              ),
+              const Text(
+                '1',
+                style: TextStyle(fontSize: 18),
+              ),
+              IconButton(
+                  onPressed: () {},
+                  iconSize: 24,
+                  icon: const Icon(Icons.remove_circle_outline)),
+            ],
           )
         ],
       ),

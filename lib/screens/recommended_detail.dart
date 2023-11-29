@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mustah_bakery/data/controller/controller.dart';
+import 'package:mustah_bakery/models/cart_model.dart';
 
 import 'package:mustah_bakery/models/product_model.dart';
 import 'package:mustah_bakery/utilities/colors.dart';
@@ -31,8 +32,6 @@ class _RecommendedProductDetailState extends State<RecommendedProductDetail> {
     return num;
   }
 
-  bool _tapped = false;
-
   int? basicPrice;
 
   int? supremePrice;
@@ -56,28 +55,26 @@ class _RecommendedProductDetailState extends State<RecommendedProductDetail> {
               Text('₵${priceHolder * itemChecker(itemCount)}',
                   style: const TextStyle(fontSize: 30)),
               //The bottom Navigation button
-              GetBuilder<ItemsController>(builder: (controller) {
-                return InkWell(
-                  onTap: () {
-                    controller.productsList.add(Product(
-                      image: widget.individualProduct.image,
-                      name: widget.individualProduct.name,
-                      quantity: itemChecker(itemCount),
-                      description: '',
-                    ));
-                  },
-                  child: Container(
-                    height: 90,
-                    width: 200,
-                    decoration: BoxDecoration(
-                        color: Colors.deepOrangeAccent,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: const Center(
-                        child: Text('ADD TO CART',
-                            style: TextStyle(fontSize: 30))),
-                  ),
-                );
-              })
+
+              InkWell(
+                onTap: () {
+                  controller.addProduct(CartModel(
+                    image: '${widget.individualProduct.image}',
+                    name: '${widget.individualProduct.name}',
+                    quantity: itemChecker(itemCount),
+                  ));
+                },
+                child: Container(
+                  height: 90,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      color: Colors.deepOrangeAccent,
+                      borderRadius: BorderRadius.circular(15)),
+                  child: const Center(
+                      child:
+                          Text('ADD TO CART', style: TextStyle(fontSize: 30))),
+                ),
+              )
             ],
           )),
       body: Stack(children: [
@@ -159,67 +156,68 @@ class _RecommendedProductDetailState extends State<RecommendedProductDetail> {
               const SizedBox(height: 10),
               Container(
                 margin: const EdgeInsets.only(bottom: 20),
-                height: 120,
+                height: 125,
                 width: double.maxFinite,
                 child: Text(widget.individualProduct.description.toString(),
                     style: const TextStyle(
                         fontWeight: FontWeight.w300,
+                        overflow: TextOverflow.fade,
                         fontSize: 18,
                         color: Color.fromARGB(255, 43, 40, 40))),
               ),
               const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //THE BASIC AND SUPREME BUTTONS
-                  const SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (!_tapped) {
-                          _tapped = true;
-                        } else {
-                          _tapped = false;
-                        }
-                        priceHolder = basicPrice!;
-                      });
-                    },
-                    child: Container(
-                        height: 40,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color:
-                              _tapped ? AppColors.mainColor : Colors.grey[900],
-                        ),
-                        child: const Center(
-                            child:
-                                Text('Basic', style: TextStyle(fontSize: 16)))),
-                  ),
-                  const SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (_tapped) {
-                          _tapped = true;
-                        } else {
-                          _tapped = false;
-                        }
-                        priceHolder = supremePrice!;
-                      });
-                    },
-                    child: Container(
-                        height: 40,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color:
-                              _tapped ? AppColors.mainColor : Colors.grey[900],
-                        ),
-                        child: const Center(child: Text('Supreme'))),
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     //THE BASIC AND SUPREME BUTTONS
+              //     const SizedBox(width: 10),
+              //     GestureDetector(
+              //       onTap: () {
+              //         setState(() {
+              //           if (!_tapped) {
+              //             _tapped = true;
+              //           } else {
+              //             _tapped = false;
+              //           }
+              //           priceHolder = basicPrice!;
+              //         });
+              //       },
+              //       child: Container(
+              //           height: 40,
+              //           width: 80,
+              //           decoration: BoxDecoration(
+              //             borderRadius: BorderRadius.circular(20),
+              //             color:
+              //                 _tapped ? AppColors.mainColor : Colors.grey[900],
+              //           ),
+              //           child: const Center(
+              //               child:
+              //                   Text('Basic', style: TextStyle(fontSize: 16)))),
+              //     ),
+              //     const SizedBox(width: 10),
+              //     GestureDetector(
+              //       onTap: () {
+              //         setState(() {
+              //           if (_tapped) {
+              //             _tapped = true;
+              //           } else {
+              //             _tapped = false;
+              //           }
+              //           priceHolder = supremePrice!;
+              //         });
+              //       },
+              //       child: Container(
+              //           height: 40,
+              //           width: 80,
+              //           decoration: BoxDecoration(
+              //             borderRadius: BorderRadius.circular(20),
+              //             color:
+              //                 _tapped ? AppColors.mainColor : Colors.grey[900],
+              //           ),
+              //           child: const Center(child: Text('Supreme'))),
+              //     ),
+              //   ],
+              // ),
               const SizedBox(height: 20),
               //THE ADD & SUB BUTTONS
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [

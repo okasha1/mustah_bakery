@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mustah_bakery/data/controller/controller.dart';
+import 'package:mustah_bakery/models/cart_model.dart';
 
 import 'package:mustah_bakery/models/product_model.dart';
 import 'package:mustah_bakery/utilities/colors.dart';
@@ -58,13 +59,11 @@ class _ProductDetailState extends State<ProductDetail> {
               GetBuilder<ItemsController>(builder: (controller) {
                 return InkWell(
                   onTap: () {
-                    controller.productsList.add(Product(
-                        image: widget.individualProduct.image,
-                        name: widget.individualProduct.name,
-                        quantity: itemChecker(itemCount),
-                        description: '',
-                        price1: null,
-                        price2: null));
+                    controller.addProduct(CartModel(
+                      image: '${widget.individualProduct.image}',
+                      name: '${widget.individualProduct.name}',
+                      quantity: itemChecker(itemCount),
+                    ));
                   },
                   child: Container(
                     height: 90,

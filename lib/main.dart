@@ -10,7 +10,7 @@ import 'package:mustah_bakery/screens/wrapper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dep.init();
+
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(primarySwatch: Colors.red),
