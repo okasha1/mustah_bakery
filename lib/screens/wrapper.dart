@@ -32,7 +32,9 @@ class _WrapperState extends State<Wrapper> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
@@ -40,6 +42,7 @@ class _WrapperState extends State<Wrapper> {
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
         unselectedItemColor: Colors.black87,
+        selectedItemColor: const Color.fromARGB(255, 255, 110, 108),
         currentIndex: _currentIndex,
         onTap: changePage,
       ),

@@ -17,10 +17,12 @@ class _ProfilePageState extends State<ProfilePage> {
         appBar: AppBar(
           title: const Text('Profile'),
         ),
-        //bottomSheet: BottomSheet(onClosing: onClosing, builder: builder),
         floatingActionButton: FloatingActionButton(
           onPressed: () {},
-          child: const Icon(Icons.edit),
+          child: const Icon(
+            Icons.edit,
+            color: Color.fromARGB(255, 255, 110, 108),
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -109,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
             const Text(
               'Mustah Bakery',
-              style: TextStyle(fontFamily: 'Niccone', fontSize: 20),
+              style: TextStyle(fontFamily: 'Niconne', fontSize: 30),
             ),
             const Center(child: Text('Version  1.0.0'))
           ]),

@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const Text(
                     "Weija, Accra",
-                    style: TextStyle(fontSize: 20),
+                    style: TextStyle(fontFamily: 'Niconne', fontSize: 20),
                   ),
                 ],
               ),
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderRadius: BorderRadius.circular(20),
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/popular/${popular[index].image}'),
+                                            '${popular[index].image}'),
                                         fit: BoxFit.fill),
                                     color: index.isEven
                                         ? Colors.amber
@@ -201,8 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           individualProduct: recommended[index],
                                         )),
                                 child: RecommendedFoodTile(
-                                    imageItem:
-                                        'assets/images/recommended/${recommended[index].image}',
+                                    imageItem: '${recommended[index].image}',
                                     name: '${recommended[index].name}',
                                     description:
                                         '${recommended[index].description}'),

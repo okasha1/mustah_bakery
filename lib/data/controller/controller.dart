@@ -12,14 +12,16 @@ class ItemsController extends GetxController {
     if (_productslist.contains(product)) {
       Get.snackbar(
           product.name.toString(), '${product.name} already exist in cart');
+      print("couldn't add to cart");
     } else {
       _productslist.add(product);
-      print(_productslist[0].image);
+      print('Added to product');
       update();
     }
   }
 
   void deleteProduct(CartModel product) {
     _productslist.remove(product);
+    update();
   }
 }

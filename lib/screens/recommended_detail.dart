@@ -59,10 +59,10 @@ class _RecommendedProductDetailState extends State<RecommendedProductDetail> {
               InkWell(
                 onTap: () {
                   controller.addProduct(CartModel(
-                    image: '${widget.individualProduct.image}',
-                    name: '${widget.individualProduct.name}',
-                    quantity: itemChecker(itemCount),
-                  ));
+                      image: '${widget.individualProduct.image}',
+                      name: '${widget.individualProduct.name}',
+                      quantity: itemChecker(itemCount),
+                      price: widget.individualProduct.price1!.toDouble()));
                 },
                 child: Container(
                   height: 90,
@@ -83,8 +83,7 @@ class _RecommendedProductDetailState extends State<RecommendedProductDetail> {
           width: double.infinity,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(
-                      'assets/images/recommended/${widget.individualProduct.image}'),
+                  image: AssetImage('${widget.individualProduct.image}'),
                   fit: BoxFit.fill)),
         ),
         Padding(
@@ -159,9 +158,10 @@ class _RecommendedProductDetailState extends State<RecommendedProductDetail> {
                 height: 125,
                 width: double.maxFinite,
                 child: Text(widget.individualProduct.description.toString(),
+                    maxLines: 6,
                     style: const TextStyle(
                         fontWeight: FontWeight.w300,
-                        overflow: TextOverflow.fade,
+                        overflow: TextOverflow.ellipsis,
                         fontSize: 18,
                         color: Color.fromARGB(255, 43, 40, 40))),
               ),

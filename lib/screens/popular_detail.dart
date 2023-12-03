@@ -60,10 +60,11 @@ class _ProductDetailState extends State<ProductDetail> {
                 return InkWell(
                   onTap: () {
                     controller.addProduct(CartModel(
-                      image: '${widget.individualProduct.image}',
-                      name: '${widget.individualProduct.name}',
-                      quantity: itemChecker(itemCount),
-                    ));
+                        image: '${widget.individualProduct.image}',
+                        name: '${widget.individualProduct.name}',
+                        quantity: itemChecker(itemCount),
+                        price:
+                            widget.individualProduct.price1!.floorToDouble()));
                   },
                   child: Container(
                     height: 90,
@@ -85,8 +86,7 @@ class _ProductDetailState extends State<ProductDetail> {
           width: double.infinity,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(
-                      'assets/images/popular/${widget.individualProduct.image}'),
+                  image: AssetImage('${widget.individualProduct.image}'),
                   fit: BoxFit.fill)),
         ),
         Padding(
@@ -158,9 +158,11 @@ class _ProductDetailState extends State<ProductDetail> {
               const SizedBox(height: 10),
               Container(
                 margin: const EdgeInsets.only(bottom: 20),
-                height: 120,
+                height: 125,
                 width: double.maxFinite,
                 child: Text(widget.individualProduct.description.toString(),
+                    maxLines: 6,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 18,

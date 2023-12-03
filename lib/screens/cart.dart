@@ -16,6 +16,15 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     ItemsController controller = Get.put(ItemsController());
     return Scaffold(
+        bottomNavigationBar: Container(
+            margin: const EdgeInsets.only(bottom: 10),
+            color: Colors.red,
+            height: 30,
+            child: const Row(
+              children: [
+                Text('pay'),
+              ],
+            )),
         appBar: AppBar(
           title: const Text('Cart'),
           elevation: 0.0,
@@ -30,9 +39,8 @@ class _CartPageState extends State<CartPage> {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CartTile(
-                        image: controller.productsList[index].image,
-                        name: controller.productsList[index].name,
-                        quantity: controller.productsList[index].quantity),
+                      index: index,
+                    ),
                   );
                 }));
   }

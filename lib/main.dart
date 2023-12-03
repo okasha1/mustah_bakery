@@ -13,7 +13,10 @@ void main() async {
 
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: ThemeData(primarySwatch: Colors.red),
+    theme: ThemeData(
+      primarySwatch: Colors.red,
+      useMaterial3: true,
+    ),
     home: Scaffold(
       backgroundColor: Colors.red[400],
       body: const Wrapper(),
