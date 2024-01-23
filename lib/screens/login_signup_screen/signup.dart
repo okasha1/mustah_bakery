@@ -1,4 +1,6 @@
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:mustah_bakery/data/helper/firebase_auth/firebase_auth.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -10,6 +12,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   late final TextEditingController _email;
   late final TextEditingController _password;
+  FirebaseAuthHelper firebaseAuthHelper = FirebaseAuthHelper();
 
   @override
   void initState() {
@@ -57,6 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           color: Color.fromRGBO(239, 83, 80, 1)),
                       borderRadius: BorderRadius.circular(20)),
                 ),
+                controller: _email,
               ),
               const SizedBox(
                 height: 20,
@@ -73,12 +77,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           color: Color.fromRGBO(239, 83, 80, 1)),
                       borderRadius: BorderRadius.circular(20)),
                 ),
+                controller: _password,
               ),
               const SizedBox(
                 height: 20,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () async {
+                  try {
+                    final email = _email.text;
+                    final password = _password.text;
+                    firebaseAuthHelper.signUp(email, password);
+                  } catch (e) {
+                    AnimatedSnackBar.rectangle(
+                      e.toString(),
+                      ' Enter valid email and password.',
+                      type: AnimatedSnackBarType.error,
+                      brightness: Brightness.light,
+                    ).show(
+                      context,
+                    );
+                  }
+                },
                 child: Center(
                   child: Container(
                     height: MediaQuery.of(context).size.height * 0.06,

@@ -31,14 +31,6 @@ class _ProductDetailState extends State<ProductDetail> {
     return num;
   }
 
-  bool _tapped = false;
-
-  int? basicPrice;
-
-  int? supremePrice;
-
-  int priceHolder = 50;
-
   @override
   Widget build(BuildContext context) {
     ItemsController controller = Get.put(ItemsController());
@@ -53,7 +45,8 @@ class _ProductDetailState extends State<ProductDetail> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('₵${priceHolder * itemChecker(itemCount)}',
+              Text(
+                  '₵${widget.individualProduct.price1 * itemChecker(itemCount)}',
                   style: const TextStyle(fontSize: 30)),
               //The bottom Navigation button
               GetBuilder<ItemsController>(builder: (controller) {
@@ -64,7 +57,7 @@ class _ProductDetailState extends State<ProductDetail> {
                         name: '${widget.individualProduct.name}',
                         quantity: itemChecker(itemCount),
                         price:
-                            widget.individualProduct.price1!.floorToDouble()));
+                            widget.individualProduct.price1.floorToDouble()));
                   },
                   child: Container(
                     height: 90,
@@ -169,60 +162,15 @@ class _ProductDetailState extends State<ProductDetail> {
                         color: Color.fromARGB(255, 43, 40, 40))),
               ),
               const SizedBox(height: 10),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //THE BASIC AND SUPREME BUTTONS
-                  const SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (!_tapped) {
-                          _tapped = true;
-                        } else {
-                          _tapped = false;
-                        }
-                        priceHolder = basicPrice!;
-                      });
-                    },
-                    child: Container(
-                        height: 40,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color:
-                              _tapped ? AppColors.mainColor : Colors.grey[900],
-                        ),
-                        child: const Center(
-                            child:
-                                Text('Basic', style: TextStyle(fontSize: 16)))),
-                  ),
-                  const SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (_tapped) {
-                          _tapped = true;
-                        } else {
-                          _tapped = false;
-                        }
-                        priceHolder = supremePrice!;
-                      });
-                    },
-                    child: Container(
-                        height: 40,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color:
-                              _tapped ? AppColors.mainColor : Colors.grey[900],
-                        ),
-                        child: const Center(child: Text('Supreme'))),
-                  ),
+                  SizedBox(width: 10),
                 ],
               ),
               const SizedBox(height: 20),
-              //THE ADD & SUB BUTTONS
+              //THE INCREMENT & DECREMENT BUTTONS
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 InkWell(
                   onTap: () {

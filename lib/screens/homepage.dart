@@ -202,6 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         )),
                                 child: RecommendedFoodTile(
                                     imageItem: '${recommended[index].image}',
+                                    price: recommended[index].price1,
                                     name: '${recommended[index].name}',
                                     description:
                                         '${recommended[index].description}'),

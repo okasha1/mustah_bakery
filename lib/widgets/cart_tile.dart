@@ -4,9 +4,9 @@ import 'package:mustah_bakery/data/controller/controller.dart';
 import 'package:mustah_bakery/widgets/black_text.dart';
 
 class CartTile extends StatefulWidget {
-  int index;
+  final int index;
 
-  CartTile({super.key, required this.index});
+  const CartTile({super.key, required this.index});
 
   @override
   State<CartTile> createState() => _CartTileState();
@@ -22,7 +22,6 @@ class _CartTileState extends State<CartTile> {
           backgroundColor: const Color.fromARGB(255, 255, 162, 22));
       return 100;
     } else if (num < 1) {
-      itemCount = 1;
       return itemCount;
     }
     return num;

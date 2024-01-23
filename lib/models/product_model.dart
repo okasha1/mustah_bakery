@@ -2,14 +2,14 @@ class Product {
   final String? name;
   final String? image;
   final String? description;
-  final int? price1;
+  final int price1;
   final int? price2;
   final int? quantity;
   const Product(
       {required this.name,
       required this.image,
       this.description,
-      this.price1,
+      required this.price1,
       this.price2,
       this.quantity});
   static const List<Product> popularProducts = [
@@ -74,11 +74,11 @@ class Product {
         price1: 20,
         price2: 30),
     Product(
-        name: 'Vanilla Cup Cake',
-        image: 'assets/images/recommended/cupcake.jpg',
-        description:
-            "A moist and fluffy vanilla cake topped with sweet and creamy vanilla frosting. A classic dessert that is perfect for any occasion.",
-        price1: 15,
-        price2: 25)
+      name: 'Vanilla Cup Cake',
+      image: 'assets/images/recommended/cupcake.jpg',
+      description:
+          "A moist and fluffy vanilla cake topped with sweet and creamy vanilla frosting. A classic dessert that is perfect for any occasion.",
+      price1: 15,
+    )
   ];
 }

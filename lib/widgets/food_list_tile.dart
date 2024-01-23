@@ -6,9 +6,11 @@ class RecommendedFoodTile extends StatelessWidget {
   final String imageItem;
   final String name;
   final String description;
+  final int price;
   const RecommendedFoodTile(
       {super.key,
       required this.imageItem,
+      required this.price,
       required this.name,
       required this.description});
 
@@ -46,12 +48,14 @@ class RecommendedFoodTile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         BlackText(text: name),
-                        Container(
-                            height: 10,
-                            width: 20,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.deepOrangeAccent))
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: Text(
+                            '₵ $price',
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.normal),
+                          ),
+                        )
                       ]),
                   SmallText(
                     text: description,

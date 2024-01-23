@@ -12,10 +12,9 @@ class ItemsController extends GetxController {
     if (_productslist.contains(product)) {
       Get.snackbar(
           product.name.toString(), '${product.name} already exist in cart');
-      print("couldn't add to cart");
     } else {
       _productslist.add(product);
-      print('Added to product');
+
       update();
     }
   }

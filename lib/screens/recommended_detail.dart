@@ -32,12 +32,6 @@ class _RecommendedProductDetailState extends State<RecommendedProductDetail> {
     return num;
   }
 
-  int? basicPrice;
-
-  int? supremePrice;
-
-  int priceHolder = 50;
-
   @override
   Widget build(BuildContext context) {
     ItemsController controller = Get.put(ItemsController());
@@ -52,7 +46,8 @@ class _RecommendedProductDetailState extends State<RecommendedProductDetail> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('₵${priceHolder * itemChecker(itemCount)}',
+              Text(
+                  '₵${widget.individualProduct.price1 * itemChecker(itemCount)}',
                   style: const TextStyle(fontSize: 30)),
               //The bottom Navigation button
 
@@ -62,7 +57,7 @@ class _RecommendedProductDetailState extends State<RecommendedProductDetail> {
                       image: '${widget.individualProduct.image}',
                       name: '${widget.individualProduct.name}',
                       quantity: itemChecker(itemCount),
-                      price: widget.individualProduct.price1!.toDouble()));
+                      price: widget.individualProduct.price1.toDouble()));
                 },
                 child: Container(
                   height: 90,

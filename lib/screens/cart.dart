@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mustah_bakery/data/controller/controller.dart';
-import 'package:mustah_bakery/models/cart_model.dart';
 import 'package:mustah_bakery/widgets/cart_tile.dart';
 
 class CartPage extends StatefulWidget {
